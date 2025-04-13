@@ -14,8 +14,6 @@ resource "aws_subnet" "public_subnet" {
 
 
 
-
-
 resource "aws_internet_gateway" "web_igw" {
   vpc_id = aws_vpc.web_vpc.id
 
@@ -40,3 +38,7 @@ resource "aws_route_table" "public_web_route_table" {
   }
 }
 
+resource "aws_route_table_association" "a" {
+  subnet_id         = aws_subnet.public_subnet.id
+  route_table_id = aws_route_table.public_web_route_table.id
+}
